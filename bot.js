@@ -88,7 +88,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     var choice = Math.floor(Math.random() * options.length)
                     choices.push(options[choice])
                     pickCount--
-                    options = options.splice(choice,1)
+                    options.splice(choice,1)
                   }
                   text = 'Chwazi - I have chosen:\n'
                   fPrint(channelID, text + fPrintArray(choices))
