@@ -101,13 +101,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     fPrint(channelID, text + fPrintArray(choices))
                 }
               break;
-  
+
               // Just add any case commands if you want to..
            }
        }
     }
     catch (err){
-      fprint(channelid, err.message)
+      fPrint(channelid, err.message)
     }
 
 });
