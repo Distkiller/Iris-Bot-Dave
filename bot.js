@@ -80,7 +80,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
               fPrint(channelID, text)
             break;
 
-            //Chwazi
+            //Chwazi - pick X number from a list of Options
             case 'chwazi':
               var pickCount = args[0]
               var options = args.splice(1)
