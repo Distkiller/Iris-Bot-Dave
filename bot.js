@@ -1,6 +1,7 @@
 var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
+var boe = []
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -23,22 +24,22 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     if (message.substring(0, 1) == '!') {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
-        var boe = []
         var text, intro, wowhead
 
         args = args.splice(1);
 
         switch(cmd) {
-            //help
-            text = '!help\n'
+            //help functions
+            case 'help':
+                text = '!help\n'
                     + '!ark - Yells out arks favorit word\n'
                     + '!bin - If you have to bin someone\n'
                     + '!boe - Show the list of BOE items we have\n'
                     + '!boeadd - add item !boeadd <type> <piece> <ilvl> <wowheadid> <wowheadroll> - example: !boeadd Plate Helm 915 5851861 155845\n'
                     + '!boedelete - !boedelete <row> - example for deleting the second row !boedelete 2 \n'
-            fprint(channelID, text)
-            });
+                fPrint(channelID, text)
             break;
+
             // troll message
             case 'ark':
                 text = 'Reeeeeeeeeeeeeee'
@@ -52,8 +53,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
             // bind on equip list
             case 'boe':
-              intro = "Boe's that are stil available: \n"
-              text = into + fPrintArray(boe)
+              intro = "Boe's that are still available: \n"
+              text = intro + fPrintArray(boe)
               fPrint(channelID, text)
             break;
 
@@ -86,13 +87,13 @@ function fPrint(intChannel, strText){
 }
 
 //Print array on different lines
-function fPrintArray(mArray[]){
-  var strArray, aLen, i
+function fPrintArray(mArray){
+  var strArray, aLen, i, text
   alen = mArray.length;
 
   for (i = 0; i < aLen; i++) {
-    text += i.toString + '.\n ' + mArray[i] + '\n' ;
+    text += mArray[i] + '\n' ;
   };
 
-  return text
+  return text;
 };
