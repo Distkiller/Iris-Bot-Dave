@@ -34,7 +34,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 text = '!help\n'
                     + '!ark - Yells out arks favorit word\n'
                     + '!bin - If you have to bin someone\n'
-                    + '!boe - Show the list of BOE items we have\n'
+                    + '!boe - Show the list of BoE items we have\n'
                     + '!boeadd - add item !boeadd <type> <piece> <ilvl> <wowheadid> <wowheadroll> - example: !boeadd Plate Helm 915 5851861 155845\n'
                     + '!boedelete - !boedelete <row> - example for deleting the second row !boedelete 2 \n'
                     + '!chwazi - !chwazi <numberOfPicks> <name1> ... <nameN> \n'
@@ -54,23 +54,29 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
             // bind on equip list
             case 'boe':
-              intro = "Boe's that are still available: \n"
-              text = intro + fPrintArray(boe)
-              fPrint(channelID, text)
+              if (boe.length > 0) {
+                intro = "BoE's that are still available: \n"
+                text = intro + fPrintArray(boe)
+                fPrint(channelID, text)
+              }
+              else {
+                text = 'No BoE\'s currently available'
+                fPrint(channelID, text)
+              }
             break;
 
             //Add item to boe list
             case 'boeadd':
               wowhead = 'Type: ' + args[0] + ' - Slot: ' + args[1] + " - ilvl: " + args[2] + " - link: http://www.wowhead.com/item=" + args[3] + "&bonus=" + args[4]
               boe.push(wowhead)
-              text = 'Boe added to the list'
+              text = 'BoE added to the list'
               fPrint(channelID,text + '\n' + wowhead)
             break;
 
             //Delete an item of the boe list
             case 'boedelete':
-              boe.splice(parseint(args[1])-1,1)
-              text = 'Boe removed from the list'
+              boe.splice(parseInt(args[0]-1),1)
+              text = 'BoE removed from the list'
               fPrint(channelID, text)
             break;
 
