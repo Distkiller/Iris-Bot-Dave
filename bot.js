@@ -37,6 +37,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     + '!boe - Show the list of BOE items we have\n'
                     + '!boeadd - add item !boeadd <type> <piece> <ilvl> <wowheadid> <wowheadroll> - example: !boeadd Plate Helm 915 5851861 155845\n'
                     + '!boedelete - !boedelete <row> - example for deleting the second row !boedelete 2 \n'
+                    + '!chwazi - !chwazi <numberOfPicks> <name1> ... <nameN> \n'
                 fPrint(channelID, text)
             break;
 
@@ -71,8 +72,29 @@ bot.on('message', function (user, userID, channelID, message, evt) {
               boe.splice(parseint(args[1])-1,1)
               text = 'Boe removed from the list'
               fPrint(channelID, text)
-
             break;
+
+            //Chwazi
+            case 'chwazi':
+              var pickCount = args[0]
+              var options = args.splice(1)
+              var choices = []
+              if (pickCount > options.length) {
+                text = 'Chwazi - You haven\'t given me enough choices. :wastebasket:'
+                fPrint(channelID, text)
+              }
+              else {
+                while (pickCount > 0) {
+                    var choice = Math.floor(Math.random() * options.length)
+                    choices.push(options[choice])
+                    pickCount--
+                    options = options.splice(choice,1)
+                  }
+                  text = 'Chwazi - I have chosen:\n'
+                  fPrint(channelID, text + fPrintArray(choices))
+              }
+            break;
+
             // Just add any case commands if you want to..
          }
      }
@@ -88,10 +110,8 @@ function fPrint(intChannel, strText){
 
 //Print array on different lines
 function fPrintArray(mArray){
-  var strArray, aLen, i, text
-  alen = mArray.length;
-
-  for (i = 0; i < aLen; i++) {
+  var text = ''
+  for (i = 0; i < mArray.length; i++) {
     text += mArray[i] + '\n' ;
   };
 
