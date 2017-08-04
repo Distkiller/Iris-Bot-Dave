@@ -107,7 +107,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
        }
     }
     catch (err){
-      fPrint(channelid, err.message)
+      fPrint(channelID, err.message)
     }
 
 });
