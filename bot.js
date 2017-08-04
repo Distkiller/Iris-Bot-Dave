@@ -40,10 +40,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                       + '!ark - Yells out arks favorit word\n'
                       + '!bin - If you have to bin someone\n'
                       + '!boe - Show the list of BoE items we have\n'
+                      + '!chwazi - !chwazi <numberOfPicks> <name1> ... <nameN> \n'
+                      + '\n'
                       + 'Admin commands: \n'
                       + '!boeadd - add item !boeadd <type> <piece> <ilvl> <wowheadid> <wowheadroll> - example: !boeadd Plate Helm 915 5851861 155845\n'
                       + '!boedelete - !boedelete <row> - example for deleting the second row !boedelete 2 \n'
-                      + '!chwazi - !chwazi <numberOfPicks> <name1> ... <nameN> \n'
+
                   fSendPM(userID, text)
               break;
               case 'check':
@@ -128,9 +130,10 @@ function fPrint(intChannel, strText){
   });
 }
 
-function fSendPM(strAuthor, strText){
+//send private message
+function fSendPM(intUserId, strText){
   bot.sendMessage({
-    to: strAuthor,
+    to: intUserId,
     message: strText
   });
 }
