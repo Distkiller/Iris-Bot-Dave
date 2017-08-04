@@ -32,16 +32,24 @@ bot.on('message', function (user, userID, channelID, message, evt) {
           switch(cmd) {
               //help functions
               case 'help':
-                  text = '!help\n'
+                  text = 'Hi, \n'
+                      + 'My name is Dave!\n'
+                      + '\n'
+                      + 'General commands: \n'
+                      + '!help\n'
                       + '!ark - Yells out arks favorit word\n'
                       + '!bin - If you have to bin someone\n'
                       + '!boe - Show the list of BoE items we have\n'
+                      + 'Admin commands: \n'
                       + '!boeadd - add item !boeadd <type> <piece> <ilvl> <wowheadid> <wowheadroll> - example: !boeadd Plate Helm 915 5851861 155845\n'
                       + '!boedelete - !boedelete <row> - example for deleting the second row !boedelete 2 \n'
                       + '!chwazi - !chwazi <numberOfPicks> <name1> ... <nameN> \n'
-                  fPrint(channelID, text)
+                  fSendPM(userID, text)
               break;
-
+              case 'check':
+                  text = 'test'
+                  fSendPM(userID, text)
+              break;
               // troll message
               case 'ark':
                   text = 'Reeeeeeeeeeeeeee'
@@ -117,6 +125,13 @@ function fPrint(intChannel, strText){
   bot.sendMessage({
       to: intChannel,
       message: strText
+  });
+}
+
+function fSendPM(strAuthor, strText){
+  bot.sendMessage({
+    to: strAuthor,
+    message: strText
   });
 }
 
